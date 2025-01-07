@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人展示页面</title>
+    <!-- AOS动画库 -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">LOGO</div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="#works">作品</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 首页部分 -->
+    <section id="home">
+        <div class="hero">
+            <h1 data-aos="fade-up">Hello, I'm <span>Your Name</span></h1>
+            <p data-aos="fade-up" data-aos-delay="200">前端开发工程师 / UI设计师</p>
+            <div class="social-links" data-aos="fade-up" data-aos-delay="400">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我部分 -->
+    <section id="about">
+        <div class="section-content">
+            <h2 data-aos="fade-up">关于我</h2>
+            <div class="about-container">
+                <div class="about-text" data-aos="fade-right">
+                    <p>这里是你的个人介绍，可以写一些你的经历和专业技能。</p>
+                    <div class="skills">
+                        <div class="skill">
+                            <span>HTML/CSS</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <span>JavaScript</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <span>Vue/React</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <img src="https://via.placeholder.com/400" alt="个人照片">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品展示部分 -->
+    <section id="works">
+        <div class="section-content">
+            <h2 data-aos="fade-up">作品展示</h2>
+            <div class="works-grid">
+                <div class="work-card" data-aos="fade-up">
+                    <img src="https://via.placeholder.com/300x200" alt="项目1">
+                    <div class="work-info">
+                        <h3>项目名称</h3>
+                        <p>项目描述</p>
+                        <div class="work-links">
+                            <a href="#" class="btn">查看演示</a>
+                            <a href="#" class="btn">源代码</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 可以添加更多作品卡片 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系部分 -->
+    <section id="contact">
+        <div class="section-content">
+            <h2 data-aos="fade-up">联系我</h2>
+            <div class="contact-info" data-aos="fade-up">
+                <a href="mailto:your.email@example.com">
+                    <i class="fas fa-envelope"></i>
+                    your.email@example.com
+                </a>
+                <a href="#">
+                    <i class="fas fa-map-marker-alt"></i>
+                    城市, 国家
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    </footer>
+
+    <!-- AOS动画库 -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
