@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人风采展示</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5c6ac4;
+            --accent: #f6c343;
+            --bg: #f7f9fc;
+            --text: #2c3e50;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Source Sans 3', 'Microsoft YaHei', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        header {
+            min-height: 100vh;
+            padding: 5rem 10vw 6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(92, 106, 196, 0.9), rgba(92, 106, 196, 0.55)),
+                url('https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?auto=format&fit=crop&w=1400&q=80') center / cover no-repeat;
+            color: #fff;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(12, 18, 44, 0.25);
+        }
+
+        header .intro {
+            position: relative;
+            max-width: 600px;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            margin-bottom: 1rem;
+            letter-spacing: 1.2px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            color: inherit;
+            text-decoration: none;
+            transition: transform 0.3s ease, background 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn.primary {
+            background: #fff;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 5rem 10vw;
+        }
+
+        .section-title {
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .about img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 25px 45px rgba(92, 106, 196, 0.2);
+        }
+
+        .about p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+        }
+
+        .stats {
+            display: grid;
+            gap: 1.2rem;
+        }
+
+        .stat-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 15px 30px rgba(92, 106, 196, 0.12);
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 0.75rem;
+            top: 0.5rem;
+            bottom: 0.5rem;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-left: 1rem;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -1.05rem;
+            top: 0.4rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 6px rgba(246, 195, 67, 0.25);
+        }
+
+        .timeline-item h3 {
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery figure {
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            box-shadow: 0 20px 35px rgba(44, 62, 80, 0.18);
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery figure figcaption {
+            position: absolute;
+            inset: auto 0 0 0;
+            padding: 1.2rem;
+            background: linear-gradient(to top, rgba(12, 18, 44, 0.85), transparent 60%);
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .gallery figure:hover img {
+            transform: scale(1.08);
+        }
+
+        .quote {
+            background: radial-gradient(circle at top left, rgba(92, 106, 196, 0.18), transparent 55%), #fff;
+            border-radius: 30px;
+            padding: 3rem;
+            text-align: center;
+            font-size: 1.3rem;
+            font-family: 'Playfair Display', serif;
+            box-shadow: 0 25px 40px rgba(92, 106, 196, 0.16);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem 10vw 3rem;
+            background: #fff;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            margin: 0 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 3.5rem 8vw;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            section {
+                padding: 3.5rem 8vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="intro">
+            <h1>你好，我是李晨曦</h1>
+            <p>资深品牌设计师与视觉讲述者，善于将故事、色彩与体验融合，打造有温度的数字作品。</p>
+            <div class="btn-group">
+                <a class="btn primary" href="#portfolio">作品精选</a>
+                <a class="btn" href="#contact">预约交流</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <p class="section-title">ABOUT</p>
+        <h2>以人为本的设计驱动者</h2>
+        <div class="about">
+            <div>
+                <p>八年视觉与品牌领域从业经验，服务过超过 40 家国内外品牌。擅长构建品牌识别系统、数字体验设计与跨界视觉策划，作品多次获得 Awwwards、站酷推荐等荣誉。</p>
+                <p>我相信设计的价值在于对话。通过深入理解品牌与用户，发掘情感共鸣点，让每一次视觉呈现都成为触动人心的体验。</p>
+                <p class="signature">— 李晨曦</p>
+            </div>
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80" alt="设计师肖像">
+        </div>
+    </section>
+
+    <section id="highlights">
+        <p class="section-title">HIGHLIGHTS</p>
+        <h2>用数据讲述热爱</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <strong>80+</strong>
+                品牌全案与数字视觉项目
+            </div>
+            <div class="stat-card">
+                <strong>12</strong>
+                次行业奖项与国际竞赛荣誉
+            </div>
+            <div class="stat-card">
+                <strong>98%</strong>
+                客户长期合作续约率
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline">
+        <p class="section-title">JOURNEY</p>
+        <h2>灵感的足迹</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>2023 - 至今｜自由视觉顾问</h3>
+                <p>为创新企业定制品牌升级策略，构建沉浸式发布会视觉与互动展厅体验。</p>
+            </div>
+            <div class="timeline-item">
+                <h3>2019 - 2023｜星迹创意 合伙人</h3>
+                <p>主导多个大型品牌重塑项目，打造从识别系统到数字触点的全链路解决方案。</p>
+            </div>
+            <div class="timeline-item">
+                <h3>2016 - 2019｜思源互动 视觉总监</h3>
+                <p>带领 10 人设计团队，为互联网与科技企业提供产品界面与营销视觉策略。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <p class="section-title">PORTFOLIO</p>
+        <h2>精选创作</h2>
+        <div class="gallery">
+            <figure>
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="沉浸式品牌展厅">
+                <figcaption>沉浸式品牌展厅《光影序章》</figcaption>
+            </figure>
+            <figure>
+                <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=900&q=80" alt="品牌画册">
+                <figcaption>自然护肤品牌年度视觉画册</figcaption>
+            </figure>
+            <figure>
+                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" alt="数字产品界面">
+                <figcaption>健康管理 App 数字体验</figcaption>
+            </figure>
+            <figure>
+                <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=900&q=80" alt="概念发布会">
+                <figcaption>科技概念发布会主视觉</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section id="quote">
+        <div class="quote">
+            “优秀的设计不止于美观，它是品牌与用户之间互相信任的桥梁，是思想与情感的共鸣。”
+        </div>
+    </section>
+
+    <section id="contact">
+        <p class="section-title">CONTACT</p>
+        <h2>一起创作下一场惊喜</h2>
+        <p>欢迎通过以下方式联系我，或预约线上沟通，期待与你的合作。</p>
+        <div class="stats">
+            <div class="stat-card">
+                <strong>Mail</strong>
+                hello@lichenxi.design
+            </div>
+            <div class="stat-card">
+                <strong>WeChat</strong>
+                lichenxi_studio
+            </div>
+            <div class="stat-card">
+                <strong>Behance</strong>
+                behance.net/lichenxi
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Li Chenxi Studio · All Rights Reserved · <a href="mailto:hello@lichenxi.design">hello@lichenxi.design</a></p>
+    </footer>
+</body>
+</html>
